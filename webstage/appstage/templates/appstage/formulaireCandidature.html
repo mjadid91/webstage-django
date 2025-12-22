@@ -1,0 +1,42 @@
+{% extends 'appstage/base.html' %}
+{% load static %}
+
+{% block title %}Candidature{% endblock %}
+
+{% block main %}
+<div class="container mt-5" style="max-width: 750px;">
+
+    <h2 class="mb-4 text-center fw-bold">
+        Candidater : {{ offre.titreOffre }}
+    </h2>
+
+    <div class="card shadow p-4">
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Message de motivation</label>
+                {{ form.message }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Votre CV (PDF)</label>
+                {{ form.cv }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Lettre de motivation (PDF)</label>
+                {{ form.lettre }}
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+                <i class="bi bi-send"></i> Envoyer ma candidature
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'appstage/base.html' %}
+
+{% block title %} Offre {{ action }} {% endblock %}
+
+{% block main %}
+<div class="container text-center mt-5">
+    {% if action == "Validée" %}
+        <h2 class="text-success">Offre validée ✔</h2>
+    {% elif action == "Refusée" %}
+        <h2 class="text-danger">Offre refusée ✘</h2>
+    {% else %}
+        <h2 class="text-warning">Offre {{action}}</h2>
+    {% endif %}
+    <p class="lead mt-3">
+        L'offre <strong>{{offre.titreOffre}}</strong>
+        de l'entreprise <strong>{{offre.entrepriseOffre}}</strong>
+        a été {{action}} avec succès.
+    </p>
+    <a href="/offres/" class="btn btn-secondary mt-3">Retour aux offres</a>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'appstage/base.html' %}
+{% load static %}
+
+{% block title %}Déconnexion{% endblock %}
+
+{% block main %}
+<div class="text-center mt-4">
+    <h2>Merci de votre visite</h2>
+    <h4>À bientôt !</h4>
+    <img style="width:120px;" src="{% static 'appstage/img/logo.png' %}" alt="logo">
+    <div class="mt-3">
+        <a class="btn btn-primary" href="/login/">Connexion</a>
+    </div>
+</div>
+{% endblock %}

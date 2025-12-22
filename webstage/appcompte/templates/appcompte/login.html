@@ -1,0 +1,30 @@
+{% extends 'appstage/base.html' %}
+{% block main %}
+
+<div class="container mt-5" style="max-width: 400px;">
+    <h2 class="text-center mb-4">Connexion</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label class="form-label">Identifiant</label>
+            <input type="text" class="form-control" name="username" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Mot de passe</label>
+            <input type="password" class="form-control" name="password" required>
+        </div>
+
+        <button class="btn btn-primary w-100">Se connecter</button>
+
+        {% if error %}
+            <p class="text-danger text-center mt-3">
+                Identifiants incorrects.
+            </p>
+        {% endif %}
+    </form>
+</div>
+
+{% endblock %}

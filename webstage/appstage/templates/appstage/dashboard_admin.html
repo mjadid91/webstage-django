@@ -1,0 +1,114 @@
+{% extends 'appstage/base.html' %}
+{% load static %}
+
+{% block title %}Dashboard administrateur{% endblock %}
+
+{% block main %}
+<div class="container mt-4">
+
+    <h2 class="fw-bold text-center mb-4">Tableau de bord – Administration</h2>
+
+    <div class="row text-center mb-4">
+
+        <div class="col-md-3">
+            <div class="card shadow-sm p-3 bg-primary text-white">
+                <h4>{{ total_offres }}</h4>
+                <p>Total offres</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm p-3 bg-success text-white">
+                <h4>{{ offres_validees }}</h4>
+                <p>Offres validées</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm p-3 bg-warning">
+                <h4>{{ offres_attente }}</h4>
+                <p>En attente</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm p-3 bg-dark text-white">
+                <h4>{{ total_candidatures }}</h4>
+                <p>Candidatures totales</p>
+            </div>
+        </div>
+
+    </div>
+
+    <hr class="my-4">
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <h5 class="text-center">Répartition des statuts</h5>
+            <canvas id="chartStatut"></canvas>
+        </div>
+
+        <div class="col-md-4">
+            <h5 class="text-center">Candidatures / mois</h5>
+            <canvas id="chartCandidatures"></canvas>
+        </div>
+
+        <div class="col-md-4">
+            <h5 class="text-center">Offres créées / mois</h5>
+            <canvas id="chartOffres"></canvas>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const dataStatut = JSON.parse('{{ stats_statut|escapejs }}');
+    const dataCand = JSON.parse('{{ stats_candidatures_mois|escapejs }}');
+    const dataOffres = JSON.parse('{{ stats_offres_mois|escapejs }}');
+
+    new Chart(document.getElementById('chartStatut'), {
+        type: 'doughnut',
+        data: {
+            labels: dataStatut.map(x => x.statutOffre),
+            datasets: [{
+                data: dataStatut.map(x => x.total),
+                backgroundColor: ['#0d6efd', '#198754', '#dc3545', '#6c757d']
+            }]
+        }
+    });
+
+    new Chart(document.getElementById('chartCandidatures'), {
+        type: 'bar',
+        data: {
+            labels: dataCand.map(x => new Date(x.month).toLocaleString('fr-FR', { month: 'short' })),
+            datasets: [{
+                label: 'Candidatures',
+                data: dataCand.map(x => x.total),
+                backgroundColor: '#0d6efd'
+            }]
+        }
+    });
+
+    new Chart(document.getElementById('chartOffres'), {
+        type: 'line',
+        data: {
+            labels: dataOffres.map(x => new Date(x.month).toLocaleString('fr-FR', { month: 'short' })),
+            datasets: [{
+                label: 'Offres',
+                data: dataOffres.map(x => x.total),
+                borderColor: '#198754',
+                fill: false,
+                tension: .3
+            }]
+        }
+    });
+</script>
+
+{% endblock %}

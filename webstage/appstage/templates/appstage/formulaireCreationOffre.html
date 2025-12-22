@@ -1,0 +1,19 @@
+{% extends 'appstage/base.html' %}
+
+{% block title %} Dépôt d'offre de stage {% endblock %}
+
+{% block main %}
+<div class="container mt-5" style="max-width: 800px;">
+    <h3 class="mb-4 text-center">Déposer une nouvelle offre de stage (Entreprise)</h3>
+
+    <form method="post" action="/offres/creer/" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary w-100 mt-3">
+            Valider et déposer l'offre
+        </button>
+    </form>
+</div>
+{% endblock %}

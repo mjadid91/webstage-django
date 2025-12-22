@@ -1,0 +1,83 @@
+{% extends "appstage/base.html" %}
+{% load static %}
+{% block title %}Accueil{% endblock %}
+
+{% block main %}
+
+<div class="hero">
+    <div class="hero-content">
+        <h1 class="display-4 fw-bold">Bienvenue sur AppStage</h1>
+        <p class="lead">Plateforme de gestion des offres et candidatures de stage</p>
+    </div>
+
+    <a href="#about" class="scroll-arrow">
+        <i class="bi bi-chevron-down"></i>
+    </a>
+</div>
+
+<div id="about" class="about-section">
+    <h2>À propos de AppStage</h2>
+    <p>
+        AppStage est une plateforme dédiée à la diffusion, la gestion et la candidature aux offres de stage.
+        Elle facilite la relation entre les entreprises, les étudiants et les responsables de stage.
+        Simple, ergonomique et efficace, elle centralise tout le processus de gestion des stages au même endroit.
+    </p>
+</div>
+
+<!-- SECTION TRIPLE CARDS -->
+<div class="container py-5">
+    <h2 class="fw-bold text-center mb-4">Pourquoi utiliser AppStage ?</h2>
+
+    <div class="row g-4">
+
+        <!-- CARD 1 -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <img src="{% static 'appstage/img/card1.jpg' %}" class="card-img-top" alt="Opportunités">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Des opportunités partout</h5>
+                    <p class="card-text text-muted">
+                        AppStage rassemble des dizaines d’offres provenant d’entreprises motivées
+                        à accueillir des étudiants ambitieux. Trouver un stage devient enfin simple,
+                        fluide, et agréable.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <img src="{% static 'appstage/img/card2.jpg' %}" class="card-img-top" alt="Gestion facile">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Tout gérer en un clic</h5>
+                    <p class="card-text text-muted">
+                        Validation, suivi, candidatures, dépôts d’offres… chaque profil dispose
+                        d’un espace simple, clair et adapté. Une plateforme pensée pour vous
+                        faciliter la vie.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <img src="{% static 'appstage/img/card3.jpg' %}" class="card-img-top" alt="Expérience moderne">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Une expérience moderne</h5>
+                    <p class="card-text text-muted">
+                        Interface élégante, transitions douces, design responsive… AppStage a été
+                        conçu avec les standards du web moderne pour une expérience agréable
+                        sur ordinateur comme sur mobile.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

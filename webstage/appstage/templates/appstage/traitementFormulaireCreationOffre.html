@@ -1,0 +1,16 @@
+{% extends 'appstage/base.html' %}
+
+{% block title %} Confirmation {% endblock %}
+
+{% block main %}
+    <div class="container mt-5 text-center">
+        <h3 class="text-success">Création réussie !</h3>
+        <p class="lead">
+            L'offre de stage "<strong>{{ titre }}</strong>" a bien été enregistrée.
+        </p>
+        <p>
+            Elle est maintenant en attente de validation par le responsable des stages.
+        </p>
+        <a href="/" class="btn btn-secondary">Retour à l'accueil</a>
+    </div>
+{% endblock %}

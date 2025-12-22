@@ -1,0 +1,85 @@
+{% extends 'appstage/base.html' %}
+{% load static %}
+
+{% block title %}Mes candidatures{% endblock %}
+
+{% block main %}
+<div class="container mt-4" style="max-width: 900px;">
+
+    <h2 class="fw-bold text-center mb-4">
+        <i class="bi bi-list-check"></i> Mes candidatures
+    </h2>
+
+    {% if candidatures %}
+    
+    <div class="row g-4">
+
+        {% for cand in candidatures %}
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100">
+
+                <div class="card-body">
+
+                    <!-- TITRE DE L’OFFRE -->
+                    <h5 class="card-title fw-bold">
+                        {{ cand.offre.titreOffre }}
+                    </h5>
+
+                    <!-- ENTREPRISE -->
+                    <p class="text-muted mb-1">
+                        <i class="bi bi-building"></i> {{ cand.offre.entrepriseOffre }}
+                    </p>
+
+                    <!-- DATE CANDIDATURE -->
+                    <p class="small text-secondary mb-2">
+                        <i class="bi bi-calendar"></i> Candidaté le  
+                        {{ cand.dateCandidature|date:"d M Y à H:i" }}
+                    </p>
+
+                    <!-- STATUT AVEC BADGE -->
+                    {% if cand.offre.statutOffre == 'validee' %}
+                        <span class="badge bg-success">Offre validée</span>
+                    {% elif cand.offre.statutOffre == 'refusee' %}
+                        <span class="badge bg-danger">Offre refusée</span>
+                    {% elif cand.offre.statutOffre == 'attente' %}
+                        <span class="badge bg-warning text-dark">En attente</span>
+                    {% elif cand.offre.statutOffre == 'cloturee' %}
+                        <span class="badge bg-secondary">Clôturée</span>
+                    {% endif %}
+
+                    <hr>
+
+                    <!-- BOUTONS -->
+                    <div class="d-flex justify-content-between">
+                        <a href="/offres/{{ cand.offre.IDOffre }}/" class="btn btn-primary btn-sm">
+                            Voir l’offre
+                        </a>
+
+                        {% if cand.cv %}
+                        <a href="{{ cand.cv.url }}" class="btn btn-outline-dark btn-sm" target="_blank">
+                            CV
+                        </a>
+                        {% endif %}
+
+                        {% if cand.lettre %}
+                        <a href="{{ cand.lettre.url }}" class="btn btn-outline-dark btn-sm" target="_blank">
+                            Lettre
+                        </a>
+                        {% endif %}
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+        <div class="alert alert-info text-center mt-4">
+            <i class="bi bi-info-circle"></i> Vous n'avez encore candidaté à aucune offre.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

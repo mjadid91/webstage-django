@@ -1,0 +1,11 @@
+{% extends 'appstage/base.html' %}
+
+{% block title %} Confirmation de candidature {% endblock %}
+
+{% block main %}
+    <div class="container mt-5 text-center">
+        <h3 class="text-success">Candidature soumise !</h3>
+        <p class="lead">Votre candidature pour l'offre "<strong>{{ offre.titreOffre }}</strong>" a été enregistrée.</p>
+        <a href="/offres/" class="btn btn-secondary">Retour aux offres</a>
+    </div>
+{% endblock %}

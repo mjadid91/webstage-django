@@ -1,0 +1,40 @@
+{% extends 'appstage/base.html' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block main %}
+<div class="container mt-5" style="max-width: 600px;">
+    <h3 class="text-center">Créer un compte</h3>
+
+    <form action="/inscription/" method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label class="form-label">Nom d'utilisateur</label>
+            <input name="username" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Prénom</label>
+            <input name="first_name" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Nom</label>
+            <input name="last_name" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input name="email" type="email" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Mot de passe</label>
+            <input name="password" type="password" class="form-control" required>
+        </div>
+
+        <button class="btn btn-primary w-100">Créer mon compte</button>
+    </form>
+</div>
+{% endblock %}

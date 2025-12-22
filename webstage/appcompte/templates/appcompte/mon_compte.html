@@ -1,0 +1,29 @@
+{% extends "appstage/base.html" %}
+{% block title %} Mon compte {% endblock %}
+
+{% block main %}
+<div class="container mt-5" style="max-width: 600px;">
+    <h2 class="mb-4 text-center fw-bold">Mon compte</h2>
+
+    <div class="card shadow-sm p-4">
+
+        <p><strong>Nom :</strong> {{ user.last_name }}</p>
+        <p><strong>Prénom :</strong> {{ user.first_name }}</p>
+        <p><strong>Email :</strong> {{ user.email }}</p>
+        <p><strong>Nom d'utilisateur :</strong> {{ user.username }}</p>
+
+        {% if user.is_superuser %}
+            <p><strong>Rôle :</strong> Administrateur</p>
+        {% elif user.is_staff %}
+            <p><strong>Rôle :</strong> Responsable</p>
+        {% else %}
+            <p><strong>Rôle :</strong> Étudiant</p>
+        {% endif %}
+
+        <hr>
+        <a href="/password-reset/" class="btn btn-warning w-100 mb-2">Changer mon mot de passe</a>
+        <a href="/" class="btn btn-secondary w-100">Retour à l'accueil</a>
+
+    </div>
+</div>
+{% endblock %}
