@@ -1,75 +1,85 @@
 {% extends 'appstage/base.html' %}
 {% load static %}
-
-{% block title %}Détail de l'offre{% endblock %}
+{% block title %}{{ offre.titreOffre }} | AppStage{% endblock %}
 
 {% block main %}
-<div class="container mt-4" style="max-width: 900px;">
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
 
-    <!-- IMAGE DE L'OFFRE -->
-    <div class="text-center mb-4">
-        {% if offre.imageOffre %}
-            <img src="{{ offre.imageOffre.url }}" class="img-fluid rounded shadow" style="max-height: 350px; object-fit: cover;">
-        {% else %}
-            <img src="{% static 'appstage/img/default_offer.jpg' %}" class="img-fluid rounded shadow" style="max-height: 350px; object-fit: cover;">
-        {% endif %}
-    </div>
+            <div class="card shadow-lg border-0 rounded-4 overflow-hidden animate-fade">
 
-    <!-- INFO PRINCIPALE -->
-    <div class="card shadow-sm p-4">
+                <div class="row g-0">
 
-        <h2 class="fw-bold">{{ offre.titreOffre }}</h2>
+                    <!-- IMAGE -->
+                    <div class="col-md-5">
+                        <img src="{% if offre.imageOffre %}{{ offre.imageOffre.url }}{% else %}{% static 'appstage/img/default_offer.jpg' %}{% endif %}"
+                             class="img-fluid h-100 w-100 object-fit-cover"
+                             style="min-height: 420px;"
+                             alt="{{ offre.titreOffre }}">
+                    </div>
 
-        <p class="text-muted">
-            <i class="bi bi-building"></i> {{ offre.entrepriseOffre }}
-        </p>
+                    <!-- CONTENU -->
+                    <div class="col-md-7 p-4 p-lg-5 d-flex flex-column">
 
-        <p class="text-secondary small">
-            <i class="bi bi-calendar"></i> Publiée le {{ offre.dateDepotOffre|date:"d M Y" }}
-        </p>
+                        <!-- HEADER OFFRE -->
+                        <div class="mb-auto">
 
-        <!-- STATUT AVEC BADGE -->
-        <p>
-            {% if offre.statutOffre == 'validee' %}
-                <span class="badge bg-success">Validée</span>
-            {% elif offre.statutOffre == 'refusee' %}
-                <span class="badge bg-danger">Refusée</span>
-            {% elif offre.statutOffre == 'attente' %}
-                <span class="badge bg-warning text-dark">En attente</span>
-            {% elif offre.statutOffre == 'cloturee' %}
-                <span class="badge bg-secondary">Clôturée</span>
-            {% endif %}
-        </p>
+                            <!-- Badge statut -->
+                            <span class="badge
+                                {% if offre.statutOffre == 'validee' %}bg-success
+                                {% elif offre.statutOffre == 'refusee' %}bg-danger
+                                {% else %}bg-warning text-dark{% endif %}
+                                px-3 py-2 mb-3 shadow-sm">
+                                {{ offre.get_statutOffre_display|default:offre.statutOffre }}
+                            </span>
 
-        <hr>
+                            <!-- Titre -->
+                            <h1 class="fw-bold h2 mb-2">{{ offre.titreOffre }}</h1>
 
-        <!-- DESCRIPTION -->
-        <h5 class="fw-bold">Description du stage</h5>
-        <p>{{ offre.detailsOffre }}</p>
+                            <!-- Entreprise -->
+                            <p class="text-primary fw-semibold fs-5 mb-4">
+                                <i class="bi bi-building me-2"></i>{{ offre.entrepriseOffre }}
+                            </p>
 
-        <hr>
+                            <!-- Description -->
+                            <h5 class="fw-bold border-bottom pb-2 mb-3">Description du poste</h5>
+                            <p class="text-muted" style="white-space: pre-line;">
+                                {{ offre.detailsOffre }}
+                            </p>
+                        </div>
 
-        <!-- MESSAGE (si déjà candidaté ou erreur) -->
-        {% if message %}
-            <div class="alert alert-warning mt-3">{{ message }}</div>
-        {% endif %}
+                        <!-- FOOTER OFFRE -->
+                        <div class="mt-4 pt-4 border-top">
 
-        <!-- BOUTON CANDIDATURE POUR ÉTUDIANT -->
-        {% if request.user.is_authenticated and not request.user.is_staff and not request.user.is_superuser %}
-            {% if offre.statutOffre == 'validee' %}
-                <a href="/offres/{{ offre.IDOffre }}/candidater/" class="btn btn-primary btn-lg w-100 mt-3">
-                    <i class="bi bi-send"></i> Candidater à cette offre
-                </a>
-            {% else %}
-                <div class="alert alert-secondary mt-3">
-                    Cette offre n’est pas disponible pour la candidature.
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <small class="text-muted">
+                                    <i class="bi bi-clock me-1"></i>
+                                    Publié le {{ offre.dateDepotOffre|date:"d F Y" }}
+                                </small>
+
+                                <span class="fw-bold text-dark">
+                                    <i class="bi bi-people me-1"></i>
+                                    {{ offre.nb_candidatures }}/5 places
+                                </span>
+                            </div>
+
+                            <!-- Bouton candidater -->
+                            {% if request.user.is_authenticated and not request.user.is_staff and not request.user.is_superuser %}
+                                <a href="/offres/{{ offre.IDOffre }}/candidater/"
+                                   class="btn btn-primary btn-lg w-100 fw-bold shadow-sm">
+                                    Déposer ma candidature
+                                </a>
+                            {% endif %}
+
+                        </div>
+
+                    </div>
                 </div>
-            {% endif %}
-        {% endif %}
 
+            </div>
+
+        </div>
     </div>
 </div>
-
-
-
 {% endblock %}

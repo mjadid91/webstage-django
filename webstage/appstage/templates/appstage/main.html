@@ -4,10 +4,13 @@
 
 {% block main %}
 
-<div class="hero">
+<!-- HERO SECTION -->
+<div class="hero d-flex align-items-center justify-content-center text-center animate-fade">
     <div class="hero-content">
-        <h1 class="display-4 fw-bold">Bienvenue sur AppStage</h1>
-        <p class="lead">Plateforme de gestion des offres et candidatures de stage</p>
+        <h1 class="display-4 fw-bold text-white mb-3">Bienvenue sur AppStage</h1>
+        <p class="lead text-light opacity-75">
+            Plateforme moderne de gestion des offres et candidatures de stage
+        </p>
     </div>
 
     <a href="#about" class="scroll-arrow">
@@ -15,26 +18,29 @@
     </a>
 </div>
 
-<div id="about" class="about-section">
-    <h2>À propos de AppStage</h2>
-    <p>
-        AppStage est une plateforme dédiée à la diffusion, la gestion et la candidature aux offres de stage.
-        Elle facilite la relation entre les entreprises, les étudiants et les responsables de stage.
-        Simple, ergonomique et efficace, elle centralise tout le processus de gestion des stages au même endroit.
-    </p>
+<!-- ABOUT SECTION -->
+<div id="about" class="about-section py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-3">À propos de AppStage</h2>
+        <p class="text-muted mx-auto" style="max-width: 750px;">
+            AppStage est une plateforme dédiée à la diffusion, la gestion et la candidature aux offres de stage.
+            Elle facilite la relation entre les entreprises, les étudiants et les responsables de stage.
+            Simple, ergonomique et efficace, elle centralise tout le processus de gestion des stages au même endroit.
+        </p>
+    </div>
 </div>
 
 <!-- SECTION TRIPLE CARDS -->
 <div class="container py-5">
-    <h2 class="fw-bold text-center mb-4">Pourquoi utiliser AppStage ?</h2>
+    <h2 class="fw-bold text-center mb-5">Pourquoi utiliser AppStage ?</h2>
 
     <div class="row g-4">
 
         <!-- CARD 1 -->
         <div class="col-md-4">
-            <div class="card shadow-sm border-0 h-100">
-                <img src="{% static 'appstage/img/card1.jpg' %}" class="card-img-top" alt="Opportunités">
-                <div class="card-body">
+            <div class="card shadow-lg border-0 rounded-4 h-100 animate-fade">
+                <img src="{% static 'appstage/img/card1.jpg' %}" class="card-img-top rounded-top-4" alt="Opportunités">
+                <div class="card-body p-4">
                     <h5 class="card-title fw-bold">Des opportunités partout</h5>
                     <p class="card-text text-muted">
                         AppStage rassemble des dizaines d’offres provenant d’entreprises motivées
@@ -47,9 +53,9 @@
 
         <!-- CARD 2 -->
         <div class="col-md-4">
-            <div class="card shadow-sm border-0 h-100">
-                <img src="{% static 'appstage/img/card2.jpg' %}" class="card-img-top" alt="Gestion facile">
-                <div class="card-body">
+            <div class="card shadow-lg border-0 rounded-4 h-100 animate-fade">
+                <img src="{% static 'appstage/img/card2.jpg' %}" class="card-img-top rounded-top-4" alt="Gestion facile">
+                <div class="card-body p-4">
                     <h5 class="card-title fw-bold">Tout gérer en un clic</h5>
                     <p class="card-text text-muted">
                         Validation, suivi, candidatures, dépôts d’offres… chaque profil dispose
@@ -62,9 +68,9 @@
 
         <!-- CARD 3 -->
         <div class="col-md-4">
-            <div class="card shadow-sm border-0 h-100">
-                <img src="{% static 'appstage/img/card3.jpg' %}" class="card-img-top" alt="Expérience moderne">
-                <div class="card-body">
+            <div class="card shadow-lg border-0 rounded-4 h-100 animate-fade">
+                <img src="{% static 'appstage/img/card3.jpg' %}" class="card-img-top rounded-top-4" alt="Expérience moderne">
+                <div class="card-body p-4">
                     <h5 class="card-title fw-bold">Une expérience moderne</h5>
                     <p class="card-text text-muted">
                         Interface élégante, transitions douces, design responsive… AppStage a été
@@ -77,7 +83,5 @@
 
     </div>
 </div>
-
-
 
 {% endblock %}

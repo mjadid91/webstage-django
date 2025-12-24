@@ -4,59 +4,73 @@
 {% block title %}Dashboard administrateur{% endblock %}
 
 {% block main %}
-<div class="container mt-4">
+<div class="container py-5">
 
-    <h2 class="fw-bold text-center mb-4">Tableau de bord – Administration</h2>
+    <!-- TITRE -->
+    <div class="text-center mb-5 animate-fade">
+        <h2 class="fw-bold text-dark">Tableau de bord – Administration</h2>
+        <p class="text-muted">Aperçu global des offres et candidatures.</p>
+    </div>
 
-    <div class="row text-center mb-4">
+    <!-- STAT CARDS -->
+    <div class="row g-4 mb-5">
 
         <div class="col-md-3">
-            <div class="card shadow-sm p-3 bg-primary text-white">
-                <h4>{{ total_offres }}</h4>
-                <p>Total offres</p>
+            <div class="card shadow-lg border-0 rounded-4 p-4 text-center bg-primary text-white animate-fade">
+                <i class="bi bi-briefcase-fill fs-1 mb-2"></i>
+                <h3 class="fw-bold">{{ total_offres }}</h3>
+                <p class="mb-0">Total offres</p>
             </div>
         </div>
 
         <div class="col-md-3">
-            <div class="card shadow-sm p-3 bg-success text-white">
-                <h4>{{ offres_validees }}</h4>
-                <p>Offres validées</p>
+            <div class="card shadow-lg border-0 rounded-4 p-4 text-center bg-success text-white animate-fade">
+                <i class="bi bi-check-circle-fill fs-1 mb-2"></i>
+                <h3 class="fw-bold">{{ offres_validees }}</h3>
+                <p class="mb-0">Offres validées</p>
             </div>
         </div>
 
         <div class="col-md-3">
-            <div class="card shadow-sm p-3 bg-warning">
-                <h4>{{ offres_attente }}</h4>
-                <p>En attente</p>
+            <div class="card shadow-lg border-0 rounded-4 p-4 text-center bg-warning text-dark animate-fade">
+                <i class="bi bi-hourglass-split fs-1 mb-2"></i>
+                <h3 class="fw-bold">{{ offres_attente }}</h3>
+                <p class="mb-0">En attente</p>
             </div>
         </div>
 
         <div class="col-md-3">
-            <div class="card shadow-sm p-3 bg-dark text-white">
-                <h4>{{ total_candidatures }}</h4>
-                <p>Candidatures totales</p>
+            <div class="card shadow-lg border-0 rounded-4 p-4 text-center bg-dark text-white animate-fade">
+                <i class="bi bi-people-fill fs-1 mb-2"></i>
+                <h3 class="fw-bold">{{ total_candidatures }}</h3>
+                <p class="mb-0">Candidatures totales</p>
             </div>
         </div>
 
     </div>
 
-    <hr class="my-4">
-
-    <div class="row">
+    <!-- GRAPHIQUES -->
+    <div class="row g-4">
 
         <div class="col-md-4">
-            <h5 class="text-center">Répartition des statuts</h5>
-            <canvas id="chartStatut"></canvas>
+            <div class="card shadow-sm border-0 rounded-4 p-4">
+                <h5 class="text-center fw-bold mb-3">Répartition des statuts</h5>
+                <canvas id="chartStatut"></canvas>
+            </div>
         </div>
 
         <div class="col-md-4">
-            <h5 class="text-center">Candidatures / mois</h5>
-            <canvas id="chartCandidatures"></canvas>
+            <div class="card shadow-sm border-0 rounded-4 p-4">
+                <h5 class="text-center fw-bold mb-3">Candidatures / mois</h5>
+                <canvas id="chartCandidatures"></canvas>
+            </div>
         </div>
 
         <div class="col-md-4">
-            <h5 class="text-center">Offres créées / mois</h5>
-            <canvas id="chartOffres"></canvas>
+            <div class="card shadow-sm border-0 rounded-4 p-4">
+                <h5 class="text-center fw-bold mb-3">Offres créées / mois</h5>
+                <canvas id="chartOffres"></canvas>
+            </div>
         </div>
 
     </div>
@@ -65,7 +79,6 @@
 {% endblock %}
 
 {% block scripts %}
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
@@ -79,9 +92,11 @@
             labels: dataStatut.map(x => x.statutOffre),
             datasets: [{
                 data: dataStatut.map(x => x.total),
-                backgroundColor: ['#0d6efd', '#198754', '#dc3545', '#6c757d']
+                backgroundColor: ['#0d6efd', '#198754', '#dc3545', '#6c757d'],
+                borderWidth: 0
             }]
-        }
+        },
+        options: { plugins: { legend: { position: 'bottom' } } }
     });
 
     new Chart(document.getElementById('chartCandidatures'), {
@@ -91,9 +106,11 @@
             datasets: [{
                 label: 'Candidatures',
                 data: dataCand.map(x => x.total),
-                backgroundColor: '#0d6efd'
+                backgroundColor: '#0d6efd',
+                borderRadius: 8
             }]
-        }
+        },
+        options: { plugins: { legend: { display: false } } }
     });
 
     new Chart(document.getElementById('chartOffres'), {
@@ -104,11 +121,12 @@
                 label: 'Offres',
                 data: dataOffres.map(x => x.total),
                 borderColor: '#198754',
-                fill: false,
-                tension: .3
+                borderWidth: 3,
+                tension: .3,
+                fill: false
             }]
-        }
+        },
+        options: { plugins: { legend: { display: false } } }
     });
 </script>
-
 {% endblock %}

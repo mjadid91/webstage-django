@@ -4,68 +4,78 @@
 {% block title %}Mes candidatures{% endblock %}
 
 {% block main %}
-<div class="container mt-4" style="max-width: 900px;">
+<div class="container py-5" style="max-width: 900px;">
 
-    <h2 class="fw-bold text-center mb-4">
-        <i class="bi bi-list-check"></i> Mes candidatures
-    </h2>
+    <!-- TITRE -->
+    <div class="text-center mb-5 animate-fade">
+        <h2 class="fw-bold text-dark">
+            <i class="bi bi-list-check me-2"></i> Mes candidatures
+        </h2>
+        <p class="text-muted">Retrouvez ici toutes les offres auxquelles vous avez postulé.</p>
+    </div>
 
     {% if candidatures %}
-    
+
+    <!-- LISTE DES CANDIDATURES -->
     <div class="row g-4">
 
         {% for cand in candidatures %}
         <div class="col-md-6">
-            <div class="card shadow-sm h-100">
+            <div class="card shadow-lg border-0 rounded-4 h-100 animate-fade">
 
-                <div class="card-body">
+                <div class="card-body p-4 d-flex flex-column">
 
                     <!-- TITRE DE L’OFFRE -->
-                    <h5 class="card-title fw-bold">
+                    <h5 class="fw-bold text-dark text-truncate mb-1">
                         {{ cand.offre.titreOffre }}
                     </h5>
 
                     <!-- ENTREPRISE -->
-                    <p class="text-muted mb-1">
-                        <i class="bi bi-building"></i> {{ cand.offre.entrepriseOffre }}
+                    <p class="text-primary fw-medium small mb-2">
+                        <i class="bi bi-building me-1"></i> {{ cand.offre.entrepriseOffre }}
                     </p>
 
                     <!-- DATE CANDIDATURE -->
-                    <p class="small text-secondary mb-2">
-                        <i class="bi bi-calendar"></i> Candidaté le  
-                        {{ cand.dateCandidature|date:"d M Y à H:i" }}
+                    <p class="text-muted small mb-3">
+                        <i class="bi bi-calendar3 me-1"></i>
+                        Candidaté le {{ cand.dateCandidature|date:"d M Y à H:i" }}
                     </p>
 
                     <!-- STATUT AVEC BADGE -->
                     {% if cand.offre.statutOffre == 'validee' %}
-                        <span class="badge bg-success">Offre validée</span>
+                        <span class="badge bg-success px-3 py-2 mb-3 shadow-sm">Offre validée</span>
                     {% elif cand.offre.statutOffre == 'refusee' %}
-                        <span class="badge bg-danger">Offre refusée</span>
+                        <span class="badge bg-danger px-3 py-2 mb-3 shadow-sm">Offre refusée</span>
                     {% elif cand.offre.statutOffre == 'attente' %}
-                        <span class="badge bg-warning text-dark">En attente</span>
+                        <span class="badge bg-warning text-dark px-3 py-2 mb-3 shadow-sm">En attente</span>
                     {% elif cand.offre.statutOffre == 'cloturee' %}
-                        <span class="badge bg-secondary">Clôturée</span>
+                        <span class="badge bg-secondary px-3 py-2 mb-3 shadow-sm">Clôturée</span>
                     {% endif %}
 
                     <hr>
 
                     <!-- BOUTONS -->
-                    <div class="d-flex justify-content-between">
-                        <a href="/offres/{{ cand.offre.IDOffre }}/" class="btn btn-primary btn-sm">
+                    <div class="d-flex gap-2 mt-auto">
+
+                        <a href="/offres/{{ cand.offre.IDOffre }}/"
+                           class="btn btn-outline-primary w-100 fw-bold btn-sm">
                             Voir l’offre
                         </a>
 
                         {% if cand.cv %}
-                        <a href="{{ cand.cv.url }}" class="btn btn-outline-dark btn-sm" target="_blank">
+                        <a href="{{ cand.cv.url }}" target="_blank"
+                           class="btn btn-light border btn-sm fw-semibold">
                             CV
                         </a>
                         {% endif %}
 
                         {% if cand.lettre %}
-                        <a href="{{ cand.lettre.url }}" class="btn btn-outline-dark btn-sm" target="_blank">
+                        <a href="{{ cand.lettre.url }}" target="_blank"
+                           class="btn btn-light border btn-sm fw-semibold">
                             Lettre
                         </a>
                         {% endif %}
+
                     </div>
 
                 </div>
@@ -77,9 +87,18 @@
     </div>
 
     {% else %}
-        <div class="alert alert-info text-center mt-4">
-            <i class="bi bi-info-circle"></i> Vous n'avez encore candidaté à aucune offre.
+
+        <!-- AUCUNE CANDIDATURE -->
+        <div class="card shadow-sm border-0 rounded-4 p-5 text-center animate-fade mt-4">
+            <i class="bi bi-info-circle text-primary" style="font-size: 3rem;"></i>
+            <h4 class="fw-bold mt-3">Aucune candidature</h4>
+            <p class="text-muted mb-4">Vous n'avez encore candidaté à aucune offre.</p>
+            <a href="/offres/" class="btn btn-primary fw-bold px-4">
+                Voir les offres disponibles
+            </a>
         </div>
+
     {% endif %}
+
 </div>
 {% endblock %}

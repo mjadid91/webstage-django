@@ -1,29 +1,46 @@
+{% load static %}
 {% extends "appstage/base.html" %}
-{% block title %} Mon compte {% endblock %}
-
+{% block title %}Mon compte{% endblock %}
 {% block main %}
-<div class="container mt-5" style="max-width: 600px;">
-    <h2 class="mb-4 text-center fw-bold">Mon compte</h2>
 
-    <div class="card shadow-sm p-4">
+<div class="container py-5" style="max-width: 600px;">
 
-        <p><strong>Nom :</strong> {{ user.last_name }}</p>
-        <p><strong>Prénom :</strong> {{ user.first_name }}</p>
-        <p><strong>Email :</strong> {{ user.email }}</p>
-        <p><strong>Nom d'utilisateur :</strong> {{ user.username }}</p>
+    <!-- Titre -->
+    <div class="text-center mb-5 animate-fade">
+        <h2 class="fw-bold text-dark">Mon compte</h2>
+        <p class="text-muted">Informations personnelles et rôle sur la plateforme.</p>
+    </div>
 
-        {% if user.is_superuser %}
-            <p><strong>Rôle :</strong> Administrateur</p>
-        {% elif user.is_staff %}
-            <p><strong>Rôle :</strong> Responsable</p>
-        {% else %}
-            <p><strong>Rôle :</strong> Étudiant</p>
-        {% endif %}
+    <!-- Carte -->
+    <div class="card shadow-lg border-0 rounded-4 p-4 p-lg-5 animate-fade">
 
-        <hr>
-        <a href="/password-reset/" class="btn btn-warning w-100 mb-2">Changer mon mot de passe</a>
-        <a href="/" class="btn btn-secondary w-100">Retour à l'accueil</a>
+        <div class="mb-4">
+            <p class="mb-2"><strong>Nom :</strong> {{ user.last_name }}</p>
+            <p class="mb-2"><strong>Prénom :</strong> {{ user.first_name }}</p>
+            <p class="mb-2"><strong>Email :</strong> {{ user.email }}</p>
+            <p class="mb-2"><strong>Nom d'utilisateur :</strong> {{ user.username }}</p>
+
+            {% if user.is_superuser %}
+                <p class="mb-0"><strong>Rôle :</strong> Administrateur</p>
+            {% elif user.is_staff %}
+                <p class="mb-0"><strong>Rôle :</strong> Responsable</p>
+            {% else %}
+                <p class="mb-0"><strong>Rôle :</strong> Étudiant</p>
+            {% endif %}
+        </div>
+
+        <hr class="my-4">
+
+        <!-- Boutons -->
+        <a href="/password-reset/" class="btn btn-warning fw-bold w-100 mb-3 shadow-sm">
+            <i class="bi bi-key me-1"></i> Changer mon mot de passe
+        </a>
+
+        <a href="/" class="btn btn-outline-secondary fw-bold w-100">
+            <i class="bi bi-house-door me-1"></i> Retour à l'accueil
+        </a>
 
     </div>
+
 </div>
 {% endblock %}

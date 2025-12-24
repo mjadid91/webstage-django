@@ -1,16 +1,45 @@
 {% extends 'appstage/base.html' %}
 
-{% block title %} Confirmation {% endblock %}
+{% block title %}Confirmation{% endblock %}
 
 {% block main %}
-    <div class="container mt-5 text-center">
-        <h3 class="text-success">Création réussie !</h3>
-        <p class="lead">
-            L'offre de stage "<strong>{{ titre }}</strong>" a bien été enregistrée.
-        </p>
-        <p>
-            Elle est maintenant en attente de validation par le responsable des stages.
-        </p>
-        <a href="/" class="btn btn-secondary">Retour à l'accueil</a>
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+
+            <div class="card shadow-lg border-0 rounded-4 p-5 text-center animate-fade">
+
+                <!-- Icône de succès -->
+                <div class="mb-4">
+                    <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+                </div>
+
+                <!-- Titre -->
+                <h2 class="fw-bold text-success mb-3">
+                    Création réussie
+                </h2>
+
+                <!-- Message -->
+                <p class="text-muted fs-5 mb-2">
+                    L'offre de stage
+                    <strong class="text-dark">« {{ titre }} »</strong>
+                    a bien été enregistrée.
+                </p>
+
+                <p class="text-muted mb-4">
+                    Elle est maintenant en attente de validation par le responsable des stages.
+                </p>
+
+                <!-- Bouton retour -->
+                <a href="/" class="btn btn-primary btn-lg px-4 fw-bold shadow-sm">
+                    Retour à l'accueil
+                </a>
+
+            </div>
+
+        </div>
     </div>
+
+</div>
 {% endblock %}

@@ -1,30 +1,55 @@
 {% extends 'appstage/base.html' %}
+
+{% block title %}Connexion{% endblock %}
+
 {% block main %}
+<div class="container py-5" style="max-width: 520px;">
 
-<div class="container mt-5" style="max-width: 400px;">
-    <h2 class="text-center mb-4">Connexion</h2>
+    <!-- Titre -->
+    <div class="text-center mb-5 animate-fade">
+        <h2 class="fw-bold text-dark">Connexion</h2>
+        <p class="text-muted">Accédez à votre espace personnel.</p>
+    </div>
 
-    <form method="post">
-        {% csrf_token %}
-        
-        <div class="mb-3">
-            <label class="form-label">Identifiant</label>
-            <input type="text" class="form-control" name="username" required>
-        </div>
+    <!-- Carte du formulaire -->
+    <div class="card shadow-lg border-0 rounded-4 p-4 p-lg-5 animate-fade">
 
-        <div class="mb-3">
-            <label class="form-label">Mot de passe</label>
-            <input type="password" class="form-control" name="password" required>
-        </div>
+        <form method="post" class="django-form-custom">
+            {% csrf_token %}
 
-        <button class="btn btn-primary w-100">Se connecter</button>
+            <!-- Identifiant -->
+            <div class="mb-4">
+                <label class="form-label fw-bold">Identifiant</label>
+                <input type="text" class="form-control" name="username" required>
+            </div>
 
-        {% if error %}
-            <p class="text-danger text-center mt-3">
-                Identifiants incorrects.
-            </p>
-        {% endif %}
-    </form>
+            <!-- Mot de passe -->
+            <div class="mb-2">
+                <label class="form-label fw-bold">Mot de passe</label>
+                <input type="password" class="form-control" name="password" required>
+            </div>
+
+            <!-- Lien mot de passe oublié -->
+            <div class="text-end mb-4">
+                <a href="/password-reset/" class="text-primary fw-semibold" style="font-size: 0.9rem;">
+                    Mot de passe oublié ?
+                </a>
+            </div>
+
+            <!-- Bouton -->
+            <button class="btn btn-primary btn-lg w-100 fw-bold shadow-sm">
+                Se connecter
+            </button>
+
+            <!-- Erreur -->
+            {% if error %}
+                <p class="text-danger text-center mt-3 fw-semibold">
+                    Identifiants incorrects.
+                </p>
+            {% endif %}
+        </form>
+
+    </div>
+
 </div>
-
 {% endblock %}

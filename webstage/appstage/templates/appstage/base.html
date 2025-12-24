@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <title>{% block title %}{% endblock %}</title>
+    <meta charset="UTF-8">
+    <title>{% block title %}Mon Site{% endblock %}</title>
 
     {% load static %}
 
+    <!-- Bootstrap & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{% static 'appstage/css/style.css' %}?v=99">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'appstage/css/style.css' %}?v=100">
 
     <link rel="icon" type="image/png" href="{% static 'appstage/img/logo.png' %}">
-
 </head>
 
-<body class="Site">
+<body class="site-wrapper">
 
-    <header>
+    <!-- HEADER / NAVBAR -->
+    <header class="site-header shadow-sm bg-white">
         {% if not user.is_authenticated %}
             {% include 'appcompte/menuNonConnecte.html' %}
         {% elif user.is_superuser %}
@@ -28,18 +36,23 @@
         {% endif %}
     </header>
 
-    <main class="Site-content">
-        {% block main %}{% endblock %}
+    <!-- MAIN CONTENT -->
+    <main class="site-content py-4">
+        <div class="container">
+            {% block main %}{% endblock %}
+        </div>
     </main>
 
-    <footer>
-        {% include 'appstage/footer.html' %}
+    <!-- FOOTER -->
+    <footer class="site-footer mt-auto bg-light border-top py-3">
+        <div class="container">
+            {% include 'appstage/footer.html' %}
+        </div>
     </footer>
 
-    <!-- Scripts Bootstrap -->
+    <!-- Bootstrap Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
     {% block scripts %}{% endblock %}
-
 </body>
 </html>

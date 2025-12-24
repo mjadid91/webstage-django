@@ -1,11 +1,41 @@
 {% extends 'appstage/base.html' %}
 
-{% block title %} Confirmation de candidature {% endblock %}
+{% block title %}Confirmation de candidature{% endblock %}
 
 {% block main %}
-    <div class="container mt-5 text-center">
-        <h3 class="text-success">Candidature soumise !</h3>
-        <p class="lead">Votre candidature pour l'offre "<strong>{{ offre.titreOffre }}</strong>" a été enregistrée.</p>
-        <a href="/offres/" class="btn btn-secondary">Retour aux offres</a>
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+
+            <div class="card shadow-lg border-0 rounded-4 p-5 text-center animate-fade">
+
+                <!-- Icône de succès -->
+                <div class="mb-4">
+                    <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+                </div>
+
+                <!-- Titre -->
+                <h2 class="fw-bold text-success mb-3">
+                    Candidature soumise avec succès
+                </h2>
+
+                <!-- Message -->
+                <p class="text-muted fs-5 mb-4">
+                    Votre candidature pour l'offre
+                    <strong class="text-dark">« {{ offre.titreOffre }} »</strong>
+                    a bien été enregistrée.
+                </p>
+
+                <!-- Bouton retour -->
+                <a href="/offres/" class="btn btn-primary btn-lg px-4 fw-bold shadow-sm">
+                    Retour aux offres
+                </a>
+
+            </div>
+
+        </div>
     </div>
+
+</div>
 {% endblock %}

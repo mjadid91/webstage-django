@@ -4,45 +4,71 @@
 {% block title %}Offres en attente{% endblock %}
 
 {% block main %}
-<div class="container mt-4">
+<div class="container py-5">
 
-    <h3 class="text-center mb-4 fw-bold text-danger">
-        Offres en attente ({{ offres|length }})
-    </h3>
+    <!-- TITRE -->
+    <div class="text-center mb-5 animate-fade">
+        <h2 class="fw-bold text-warning mb-2">
+            Offres en attente
+            <span class="badge bg-warning text-dark rounded-pill ms-2">{{ offres|length }}</span>
+        </h2>
+        <p class="text-muted">Les offres en cours de validation apparaissent ici.</p>
+    </div>
 
     {% if offres|length == 0 %}
-        <h5 class="text-center text-muted">Aucune offre en attente.</h5>
+
+        <!-- AUCUNE OFFRE -->
+        <div class="text-center py-5">
+            <i class="bi bi-hourglass-split display-1 text-muted opacity-25"></i>
+            <h4 class="mt-3 text-secondary">Aucune offre en attente</h4>
+            <p class="text-muted">Toutes les offres ont été traitées.</p>
+        </div>
+
     {% else %}
+
+        <!-- LISTE DES OFFRES -->
         <div class="row g-4">
 
             {% for offre in offres %}
-            <div class="col-md-4">
-                <div class="card shadow-sm offer-card h-100">
+            <div class="col-md-6 col-lg-4">
+                <div class="card offer-card shadow-sm rounded-4 h-100 animate-fade">
 
-                    {% if offre.imageOffre %}
-                        <img src="{{ offre.imageOffre.url }}" class="card-img-top" alt="">
-                    {% else %}
-                        <img src="{% static 'appstage/img/default_offer.jpg' %}" class="card-img-top" alt="">
-                    {% endif %}
+                    <!-- IMAGE -->
+                    <div class="position-relative overflow-hidden">
+                        <img src="{% if offre.imageOffre %}{{ offre.imageOffre.url }}{% else %}{% static 'appstage/img/default_offer.jpg' %}{% endif %}"
+                             class="card-img-top offer-img" alt="{{ offre.titreOffre }}">
+                        <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3 px-3 py-2 shadow-sm">
+                            En attente
+                        </span>
+                    </div>
 
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">{{ offre.titreOffre }}</h5>
-                        <p class="text-muted">
-                            <i class="bi bi-building"></i> {{ offre.entrepriseOffre }}
+                    <!-- CONTENU -->
+                    <div class="card-body p-4 d-flex flex-column">
+
+                        <h5 class="card-title fw-bold text-dark text-truncate mb-1">
+                            {{ offre.titreOffre }}
+                        </h5>
+
+                        <p class="text-primary fw-medium small mb-2">
+                            <i class="bi bi-building me-1"></i> {{ offre.entrepriseOffre }}
                         </p>
 
-                        <p class="small text-secondary">
+                        <p class="text-muted small mb-4">
+                            <i class="bi bi-calendar3 me-1"></i>
                             Déposée le {{ offre.dateDepotOffre|date:"d M Y" }}
                         </p>
 
-                        <span class="badge bg-warning text-dark">En attente</span>
-
-                        <hr>
-
-                        <div class="d-flex justify-content-between">
-                            <a href="/offres/{{ offre.IDOffre }}/" class="btn btn-primary btn-sm">Détails</a>
-                            <a href="/offres/{{ offre.IDOffre }}/valider/" class="btn btn-success btn-sm">Valider</a>
-                            <a href="/offres/{{ offre.IDOffre }}/refuser/" class="btn btn-danger btn-sm">Refuser</a>
+                        <!-- ACTIONS -->
+                        <div class="d-flex gap-2 mt-auto">
+                            <a href="/offres/{{ offre.IDOffre }}/" class="btn btn-outline-primary w-100 fw-bold btn-sm">
+                                Détails
+                            </a>
+                            <a href="/offres/{{ offre.IDOffre }}/valider/" class="btn btn-success fw-bold btn-sm">
+                                <i class="bi bi-check-circle"></i>
+                            </a>
+                            <a href="/offres/{{ offre.IDOffre }}/refuser/" class="btn btn-danger fw-bold btn-sm">
+                                <i class="bi bi-x-circle"></i>
+                            </a>
                         </div>
 
                     </div>
@@ -51,6 +77,7 @@
             {% endfor %}
 
         </div>
+
     {% endif %}
 
 </div>

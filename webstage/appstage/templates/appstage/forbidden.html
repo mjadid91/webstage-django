@@ -1,13 +1,32 @@
 {% extends 'appstage/base.html' %}
+{% load static %}
 
-{% block title %}Accès interdit{% endblock %}
+{% block title %}Accès restreint | AppStage{% endblock %}
 
 {% block main %}
+<div class="container py-5">
+    <div class="row justify-content-center align-items-center" style="min-height: 60vh;">
+        <div class="col-md-6 text-center animate-fade">
+            <div class="mb-4">
+                <div class="display-1 text-danger opacity-25">
+                    <i class="bi bi-shield-lock-fill"></i>
+                </div>
+            </div>
 
-<div class="container mt-5 text-center">
-    <h2 class="text-danger">Accès interdit</h2>
-    <p class="lead">{{ message }}</p>
-    <a href="/" class="btn btn-secondary mt-3">Retour à l'accueil</a>
+            <h1 class="fw-bold text-dark mb-3">Accès restreint</h1>
+            <p class="lead text-muted mb-5">
+                {{ message|default:"Désolé, vous n'avez pas les permissions nécessaires pour accéder à cette page." }}
+            </p>
+
+            <div class="d-flex justify-content-center gap-3">
+                <a href="javascript:history.back()" class="btn btn-outline-secondary px-4">
+                    <i class="bi bi-arrow-left me-2"></i>Retour
+                </a>
+                <a href="/" class="btn btn-primary px-4 shadow-sm">
+                    Page d'accueil
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
-
 {% endblock %}

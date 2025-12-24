@@ -1,19 +1,32 @@
 {% extends 'appstage/base.html' %}
 
-{% block title %} Dépôt d'offre de stage {% endblock %}
+{% block title %}Dépôt d'offre de stage{% endblock %}
 
 {% block main %}
-<div class="container mt-5" style="max-width: 800px;">
-    <h3 class="mb-4 text-center">Déposer une nouvelle offre de stage (Entreprise)</h3>
+<div class="container py-5" style="max-width: 800px;">
 
-    <form method="post" action="/offres/creer/" enctype="multipart/form-data">
-        {% csrf_token %}
+    <!-- Titre -->
+    <div class="text-center mb-5 animate-fade">
+        <h2 class="fw-bold text-dark">Déposer une nouvelle offre de stage</h2>
+        <p class="text-muted">Remplissez les informations ci-dessous pour soumettre une offre.</p>
+    </div>
 
-        {{ form.as_p }}
+    <!-- Carte du formulaire -->
+    <div class="card shadow-lg border-0 rounded-4 p-4 p-lg-5 animate-fade">
 
-        <button type="submit" class="btn btn-primary w-100 mt-3">
-            Valider et déposer l'offre
-        </button>
-    </form>
+        <form method="post" action="/offres/creer/" enctype="multipart/form-data" class="django-form-custom">
+            {% csrf_token %}
+
+            <!-- Formulaire Django stylé -->
+            {{ form.as_p }}
+
+            <!-- Bouton -->
+            <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold shadow-sm mt-3">
+                Valider et déposer l'offre
+            </button>
+        </form>
+
+    </div>
+
 </div>
 {% endblock %}

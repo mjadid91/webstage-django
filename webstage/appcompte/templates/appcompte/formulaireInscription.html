@@ -3,38 +3,55 @@
 {% block title %}Inscription{% endblock %}
 
 {% block main %}
-<div class="container mt-5" style="max-width: 600px;">
-    <h3 class="text-center">Créer un compte</h3>
+<div class="container py-5" style="max-width: 600px;">
 
-    <form action="/inscription/" method="POST">
-        {% csrf_token %}
+    <!-- Titre -->
+    <div class="text-center mb-5 animate-fade">
+        <h2 class="fw-bold text-dark">Créer un compte</h2>
+        <p class="text-muted">Rejoignez la plateforme en quelques instants.</p>
+    </div>
 
-        <div class="mb-3">
-            <label class="form-label">Nom d'utilisateur</label>
-            <input name="username" class="form-control" required>
-        </div>
+    <!-- Carte du formulaire -->
+    <div class="card shadow-lg border-0 rounded-4 p-4 p-lg-5 animate-fade">
 
-        <div class="mb-3">
-            <label class="form-label">Prénom</label>
-            <input name="first_name" class="form-control">
-        </div>
+        <form action="/inscription/" method="POST" class="django-form-custom">
+            {% csrf_token %}
 
-        <div class="mb-3">
-            <label class="form-label">Nom</label>
-            <input name="last_name" class="form-control">
-        </div>
+            <!-- Nom d'utilisateur -->
+            <div class="mb-4">
+                <label class="form-label fw-bold">Nom d'utilisateur</label>
+                <input name="username" class="form-control" required>
+            </div>
 
-        <div class="mb-3">
-            <label class="form-label">Email</label>
-            <input name="email" type="email" class="form-control">
-        </div>
+            <!-- Prénom -->
+            <div class="mb-4">
+                <label class="form-label fw-bold">Prénom</label>
+                <input name="first_name" class="form-control">
+            </div>
 
-        <div class="mb-3">
-            <label class="form-label">Mot de passe</label>
-            <input name="password" type="password" class="form-control" required>
-        </div>
+            <!-- Nom -->
+            <div class="mb-4">
+                <label class="form-label fw-bold">Nom</label>
+                <input name="last_name" class="form-control">
+            </div>
 
-        <button class="btn btn-primary w-100">Créer mon compte</button>
-    </form>
+            <!-- Email -->
+            <div class="mb-4">
+                <label class="form-label fw-bold">Email</label>
+                <input name="email" type="email" class="form-control">
+            </div>
+
+            <!-- Mot de passe -->
+            <div class="mb-4">
+                <label class="form-label fw-bold">Mot de passe</label>
+                <input name="password" type="password" class="form-control" required>
+            </div>
+
+            <!-- Bouton -->
+            <button class="btn btn-primary btn-lg w-100 fw-bold shadow-sm">
+                Créer mon compte
+            </button>
+        </form>
+    </div>
 </div>
 {% endblock %}

@@ -1,55 +1,41 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-danger shadow-sm py-2">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-modern shadow-sm py-3" style="background: rgba(220,38,38,0.08) !important;">
+  <div class="container">
 
-    <!-- Logo -->
-    <a class="navbar-brand fw-bold" href="/">
-      <i class="bi bi-clipboard-check"></i> AppStage
+    <a class="navbar-brand d-flex align-items-center gap-2 text-danger" href="/">
+      <i class="bi bi-clipboard-check fs-4"></i> AppStage
     </a>
 
-    <!-- Bouton mobile -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarStaff">
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarStaff">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarStaff">
 
-      <!-- Liens gauche -->
-      <ul class="navbar-nav me-auto gap-2">
-
+      <ul class="navbar-nav me-auto gap-3">
         <li class="nav-item">
           <a class="nav-link" href="/offres/en-attente/">
-            <i class="bi bi-hourglass-split"></i> Offres en attente
+            <i class="bi bi-hourglass-split me-1"></i> Offres en attente
           </a>
         </li>
-
         <li class="nav-item">
           <a class="nav-link" href="/offres/">
-            <i class="bi bi-search"></i> Rechercher une offre
+            <i class="bi bi-search me-1"></i> Rechercher
           </a>
         </li>
-
       </ul>
 
-      <!-- Nom utilisateur -->
-      <span class="navbar-text text-white me-3">
-        <i class="bi bi-person-badge"></i> {{ user.username }}
+      <span class="navbar-text fw-semibold me-3 text-danger">
+        <i class="bi bi-person-badge me-1"></i> {{ user.username }}
       </span>
 
-      <!-- Mon compte -->
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link text-light fw-bold" href="/compte/">
-            <i class="bi bi-gear"></i> Mon compte
-          </a>
-        </li>
-      </ul>
+      <a class="nav-link fw-semibold text-danger me-3" href="/compte/">
+        <i class="bi bi-gear"></i> Mon compte
+      </a>
 
-      <!-- Déconnexion -->
-      <a class="btn btn-outline-light ms-3 px-3" href="/logout/">
+      <a class="btn btn-outline-danger btn-nav" href="/logout/">
         <i class="bi bi-box-arrow-right"></i> Déconnexion
       </a>
 
     </div>
-
   </div>
 </nav>
