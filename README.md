@@ -85,10 +85,10 @@ source env/bin/activate      # Linux / Mac
 env\Scripts\activate         # Windows
 ```
 
-### 3. Installer les dépendances
+### 3. Installer django
 
 ```bash
-pip install -r requirements.txt
+pip install django
 ```
 
 ### 4. Appliquer les migrations
@@ -105,6 +105,19 @@ python manage.py runserver
 
 **Accès** : 👉 http://127.0.0.1:8000/
 
+## 🔑 Comptes de Test (Démo)
+
+Pour explorer la plateforme avec les différents niveaux d'accès, vous pouvez utiliser les comptes suivants :
+
+| Rôle | Identifiant         | Mot de passe | Permissions |
+|------|---------------------|--------------|-------------|
+| **Superuser** | `admin_demo`        | `admin123`   | Accès total au site et au back-office Django. |
+| **Staff** | `responsable_stage` | `resp12345`  | Validation des offres et accès au dashboard analytique. |
+| **Étudiant** | `student1`          | `azerty`     | Consultation des offres et dépôt de candidatures. |
+
+> **Note** : Ces comptes sont destinés à la démonstration. Pour une installation locale, vous pouvez créer votre propre compte via `python manage.py createsuperuser`.
+
+
 ## 📂 Structure du Projet
 
 ```
@@ -116,7 +129,6 @@ webstage/
 │── static/            # CSS, JS, images
 │── templates/         # Templates HTML
 │── manage.py
-│── requirements.txt
 └── README.md
 ```
 
@@ -141,11 +153,6 @@ Développé avec passion par :
 
 - **Mohamed JADID** — Développeur Full-Stack
 - **Chadi AMESTOUN** — Développeur & Architecte Logiciel
-
-## 📄 Licence
-
-Ce projet est sous licence MIT.  
-Consultez le fichier `LICENSE` pour plus d'informations.
 
 ## ⭐ Support & Contributions
 
